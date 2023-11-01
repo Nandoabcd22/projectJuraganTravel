@@ -19,10 +19,10 @@ import android.graphics.drawable.Drawable;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private EditText namalengkapEditText, emailEditText, nikEditText, nohpEditText, alamatEditText, usernameEditText;
+    private EditText namalengkapEditText, emailEditText, nikEditText, nohpEditText, alamatEditText;
     private Spinner genderSpinner;
     private DatabaseHelper databaseHelper;
-    private boolean isNikVisible = false; // Ganti nama variabel ini
+    private boolean isNikVisible = false; // Variabel ini digunakan untuk mengatur visibilitas NIK
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -36,7 +36,6 @@ public class RegisterActivity extends AppCompatActivity {
         nikEditText = findViewById(R.id.nik);
         nohpEditText = findViewById(R.id.nohp);
         alamatEditText = findViewById(R.id.alamat);
-        usernameEditText = findViewById(R.id.username);
 
         // Inisialisasi Spinner
         genderSpinner = findViewById(R.id.gender);
@@ -66,7 +65,6 @@ public class RegisterActivity extends AppCompatActivity {
                 String phone = nohpEditText.getText().toString();
                 String gender = genderSpinner.getSelectedItem().toString();
                 String address = alamatEditText.getText().toString();
-                String username = usernameEditText.getText().toString();
 
                 // Validasi kolom
                 boolean isValid = true;
@@ -93,10 +91,6 @@ public class RegisterActivity extends AppCompatActivity {
                     alamatEditText.setError("Alamat harus diisi");
                     isValid = false;
                 }
-                if (username.isEmpty()) {
-                    usernameEditText.setError("Username harus diisi");
-                    isValid = false;
-                }
 
                 if (isValid) {
                     // Simpan data ke SQLite
@@ -108,7 +102,6 @@ public class RegisterActivity extends AppCompatActivity {
                     values.put(DatabaseHelper.COLUMN_PHONE, phone);
                     values.put(DatabaseHelper.COLUMN_GENDER, gender);
                     values.put(DatabaseHelper.COLUMN_ADDRESS, address);
-                    values.put(DatabaseHelper.COLUMN_USERNAME, username);
 
                     long newRowId = db.insert(DatabaseHelper.TABLE_NAME, null, values);
 
@@ -120,13 +113,14 @@ public class RegisterActivity extends AppCompatActivity {
                         Intent intent = new Intent(RegisterActivity.this, LogJamaahActivity.class);
                         startActivity(intent);
                     } else {
-                        // Gagal menyimpan data
+                        // Gagal mendaftar
                         Toast.makeText(RegisterActivity.this, "Gagal mendaftar", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
         });
 
+        // Menambahkan onTouchListener untuk ikon Show/Hide NIK
         nikEditText.setOnTouchListener(new View.OnTouchListener() {
             @SuppressLint("ClickableViewAccessibility")
             @Override
@@ -141,9 +135,9 @@ public class RegisterActivity extends AppCompatActivity {
                 return false;
             }
         });
-
     }
 
+    // Metode untuk mengganti visibilitas NIK (terlihat atau tersembunyi)
     private void toggleNikVisibility(EditText editText) {
         if (isNikVisible) {
             editText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
@@ -153,6 +147,7 @@ public class RegisterActivity extends AppCompatActivity {
             editText.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.baseline_visibility_24, 0);
         }
 
+        // Memperbarui status visibilitas
         isNikVisible = !isNikVisible;
     }
 }

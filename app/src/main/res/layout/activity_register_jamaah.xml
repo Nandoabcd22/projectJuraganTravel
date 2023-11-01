@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -17,6 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:fontFamily="@font/poppins_medium"
             android:paddingBottom="250dp">
 
             <TextView
@@ -27,7 +28,8 @@
                 android:textSize="30dp"
                 android:layout_gravity="center"
                 android:textStyle="bold"
-                android:textColor="@color/merah">
+                android:textColor="@color/merah"
+                android:fontFamily="@font/poppins_extrabold">
             </TextView>
 
             <EditText
@@ -40,6 +42,23 @@
                 android:drawableLeft="@drawable/baseline_person_24"
                 android:drawablePadding="8dp"
                 android:hint="Nama Lengkap"
+                android:fontFamily="@font/poppins_medium"
+                android:padding="8dp" />
+
+
+            <EditText
+                android:id="@+id/nik"
+                android:layout_width="380dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/border"
+                android:drawableLeft="@drawable/baseline_password_24"
+                android:inputType="textPassword"
+                android:drawablePadding="8dp"
+                android:drawableRight="@drawable/baseline_visibility_off_24"
+                android:hint="Masukkan NIK anda"
+                android:fontFamily="@font/poppins_medium"
                 android:padding="8dp" />
 
             <EditText
@@ -52,6 +71,7 @@
                 android:drawableLeft="@drawable/baseline_email_24"
                 android:drawablePadding="8dp"
                 android:hint="Email"
+                android:fontFamily="@font/poppins_medium"
                 android:padding="8dp" />
 
 
@@ -66,15 +86,18 @@
                 android:drawableLeft="@drawable/baseline_phone_24"
                 android:drawablePadding="8dp"
                 android:hint="No. Handphone"
+                android:fontFamily="@font/poppins_medium"
                 android:padding="8dp" />
+
             <Spinner
                 android:id="@+id/gender"
                 android:layout_width="380dp"
                 android:layout_height="50dp"
                 android:background="@drawable/border"
+                android:drawableLeft="@drawable/baseline_people_alt_24"
+                android:drawablePadding="8dp"
                 android:layout_marginTop="20dp"
                 android:layout_gravity="center">
-
             </Spinner>
 
             <EditText
@@ -86,34 +109,9 @@
                 android:background="@drawable/border"
                 android:drawableLeft="@drawable/baseline_maps_home_work_24"
                 android:drawablePadding="8dp"
+                android:fontFamily="@font/poppins_medium"
                 android:hint="Alamat"
                 android:padding="8dp" />
-
-            <EditText
-                android:id="@+id/username"
-                android:layout_width="380dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/border"
-                android:drawableLeft="@drawable/baseline_person_24"
-                android:drawablePadding="8dp"
-                android:hint="Username"
-                android:padding="8dp" />
-
-            <EditText
-                android:id="@+id/nik"
-                android:layout_width="380dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/border"
-                android:inputType="textPassword"
-                android:drawablePadding="8dp"
-                android:drawableRight="@drawable/baseline_visibility_off_24"
-                android:hint="Masukkan NIK anda"
-                android:padding="8dp" />
-
 
             <Button
                 android:id="@+id/signup_button"
@@ -123,9 +121,10 @@
                 android:layout_marginTop="30dp"
                 android:backgroundTint="@color/merah"
                 android:text="Daftar"
+                android:fontFamily="@font/poppins_medium"
                 android:textSize="20sp"
                 app:cornerRadius="20dp" />
 
         </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+</ScrollView>
