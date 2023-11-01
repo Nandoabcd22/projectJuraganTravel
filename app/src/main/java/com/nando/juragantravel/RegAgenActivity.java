@@ -3,23 +3,23 @@ package com.nando.juragantravel;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.ArrayAdapter;
-import android.database.sqlite.SQLiteDatabase;
-import android.content.ContentValues;
 import android.widget.Toast;
-import android.text.InputType;
 
-public class RegJamaahActivity extends AppCompatActivity {
+public class RegAgenActivity extends AppCompatActivity {
 
-    private EditText namalengkapEditText, emailEditText, nikEditText, nohpEditText, alamatEditText;
-    private Spinner genderSpinner;
+
+    private EditText namalengkapEditText, emailEditText, PassEditText, nohpEditText;
     private DatabaseHelper databaseHelper;
     private boolean isNikVisible = false; // Variabel ini digunakan untuk mengatur visibilitas NIK
 
@@ -27,30 +27,16 @@ public class RegJamaahActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register_jamaah);
+        setContentView(R.layout.activity_register_agen);
 
         // Inisialisasi komponen EditText
         namalengkapEditText = findViewById(R.id.namalengkap);
         emailEditText = findViewById(R.id.email);
-        nikEditText = findViewById(R.id.nik);
+        PassEditText = findViewById(R.id.password);
         nohpEditText = findViewById(R.id.nohp);
-        alamatEditText = findViewById(R.id.alamat);
-
-        // Inisialisasi Spinner
-        genderSpinner = findViewById(R.id.gender);
 
         // Inisialisasi database helper
         databaseHelper = new DatabaseHelper(this);
-
-        // Buat array pilihan jenis kelamin
-        String[] genders = {"Laki-laki", "Perempuan"};
-
-        // Buat adapter untuk Spinner
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, genders);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        // Set adapter ke Spinner
-        genderSpinner.setAdapter(adapter);
 
         // Tambahkan listener untuk tombol "Daftar"
         Button signupButton = findViewById(R.id.signup_button);
@@ -58,76 +44,68 @@ public class RegJamaahActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // Mengambil data dari formulir
-                String fullName = namalengkapEditText.getText().toString();
-                String email = emailEditText.getText().toString();
-                String nik = nikEditText.getText().toString();
-                String phone = nohpEditText.getText().toString();
-                String gender = genderSpinner.getSelectedItem().toString();
-                String address = alamatEditText.getText().toString();
+                String USERNAME = namalengkapEditText.getText().toString();
+                String EMAIL = emailEditText.getText().toString();
+                String PASSWORD = PassEditText.getText().toString();
+                String PHONE = nohpEditText.getText().toString();
 
                 // Validasi kolom
                 boolean isValid = true;
-                if (fullName.isEmpty()) {
+                if (USERNAME.isEmpty()) {
                     namalengkapEditText.setError("Nama lengkap harus diisi");
                     isValid = false;
                 }
-                if (email.isEmpty()) {
+                if (EMAIL.isEmpty()) {
                     emailEditText.setError("Email harus diisi");
                     isValid = false;
                 }
-                if (nik.isEmpty()) {
-                    nikEditText.setError("NIK harus diisi");
+                if (PASSWORD.isEmpty()) {
+                    PassEditText.setError("Password harus diisi");
                     isValid = false;
-                } else if (nik.length() != 16) {
-                    nikEditText.setError("NIK harus terdiri dari 16 angka");
+                } else if (PASSWORD.length() == 8) {
+                    PassEditText.setError("Password Minimal dari 8 karakter");
                     isValid = false;
                 }
-                if (phone.isEmpty()) {
+                if (PHONE.isEmpty()) {
                     nohpEditText.setError("Nomor HP harus diisi");
-                    isValid = false;
-                }
-                if (address.isEmpty()) {
-                    alamatEditText.setError("Alamat harus diisi");
                     isValid = false;
                 }
 
                 if (isValid) {
                     // Simpan data ke SQLite
-                    SQLiteDatabase insertReg = databaseHelper.getWritableDatabase();
+                    SQLiteDatabase insertAgen = databaseHelper.getWritableDatabase();
                     ContentValues values = new ContentValues();
-                    values.put(DatabaseHelper.COLUMN_FULL_NAME, fullName);
-                    values.put(DatabaseHelper.COLUMN_EMAIL, email);
-                    values.put(DatabaseHelper.COLUMN_NIK, nik);
-                    values.put(DatabaseHelper.COLUMN_PHONE, phone);
-                    values.put(DatabaseHelper.COLUMN_GENDER, gender);
-                    values.put(DatabaseHelper.COLUMN_ADDRESS, address);
+                    values.put(DatabaseHelper.USERNAME, USERNAME);
+                    values.put(DatabaseHelper.EMAIL, EMAIL);
+                    values.put(DatabaseHelper.PASSWORD, PASSWORD);
+                    values.put(DatabaseHelper.PHONE, PHONE);
 
-                    long newRowId = insertReg.insert(DatabaseHelper.JAMAAH, null, values);
+                    long RegAgen = insertAgen.insert(DatabaseHelper.AGEN, null, values);
 
-                    if (newRowId != -1) {
+                    if (RegAgen != -1) {
                         // Data berhasil disimpan
-                        Toast.makeText(RegJamaahActivity.this, "Pendaftaran berhasil", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegAgenActivity.this, "Pendaftaran berhasil", Toast.LENGTH_SHORT).show();
 
-                        // Navigasi ke aktivitas activity_log_jamaah
-                        Intent intent = new Intent(RegJamaahActivity.this, LogJamaahActivity.class);
+                        // Navigasi ke aktivitas activity_log_agen
+                        Intent intent = new Intent(RegAgenActivity.this, LogAgenActivity.class);
                         startActivity(intent);
                     } else {
                         // Gagal mendaftar
-                        Toast.makeText(RegJamaahActivity.this, "Gagal mendaftar", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegAgenActivity.this, "Gagal mendaftar", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
         });
 
         // Menambahkan onTouchListener untuk ikon Show/Hide NIK
-        nikEditText.setOnTouchListener(new View.OnTouchListener() {
+        PassEditText.setOnTouchListener(new View.OnTouchListener() {
             @SuppressLint("ClickableViewAccessibility")
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 final int DRAWABLE_RIGHT = 2;
                 if (event.getAction() == MotionEvent.ACTION_UP) {
-                    if (event.getRawX() >= (nikEditText.getRight() - nikEditText.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
-                        toggleNikVisibility(nikEditText);
+                    if (event.getRawX() >= (PassEditText.getRight() - PassEditText.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                        toggleNikVisibility(PassEditText);
                         return true;
                     }
                 }

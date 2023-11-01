@@ -27,20 +27,22 @@ public class LogJamaahActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_jamaah);
 
+        // Menghubungkan tombol "Daftar" ke aktivitas pendaftaran
         TextView daftarTextView = findViewById(R.id.btnDaftar);
         daftarTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LogJamaahActivity.this, RegisterActivity.class);
+                Intent intent = new Intent(LogJamaahActivity.this, RegJamaahActivity.class);
                 startActivity(intent);
             }
         });
 
+        // Menginisialisasi database helper dan tampilan
         databaseHelper = new DatabaseHelper(this);
         loginButton = findViewById(R.id.loginButton);
         nikEditText = findViewById(R.id.nik);
 
-        // Tambahkan onTouchListener untuk ikon Show/Hide NIK
+        // Menambahkan onTouchListener untuk ikon Show/Hide NIK
         nikEditText.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -55,33 +57,38 @@ public class LogJamaahActivity extends AppCompatActivity {
             }
         });
 
+        // Menangani klik tombol Login
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String providedNIK = nikEditText.getText().toString();
 
                 if (databaseHelper.checkNIK(providedNIK)) {
-                    // NIK valid, izinkan login ke activity_home_jamaah
+                    // Jika NIK valid, lanjutkan ke activity_home_jamaah
                     Intent intent = new Intent(LogJamaahActivity.this, HomeJamaahActivity.class);
                     startActivity(intent);
                     Toast.makeText(LogJamaahActivity.this, "Login Berhasil", Toast.LENGTH_SHORT).show();
                 } else {
-                    // NIK tidak valid, tampilkan pesan kesalahan atau lakukan tindakan yang sesuai
+                    // Jika NIK tidak valid, tampilkan pesan kesalahan
                     Toast.makeText(LogJamaahActivity.this, "NIK Tidak Valid", Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
 
+    // Metode untuk mengganti visibilitas NIK (terlihat atau tersembunyi)
     private void toggleNikVisibility(EditText editText) {
         if (isNikVisible) {
+            // NIK sekarang tersembunyi
             editText.setInputType(129); // InputType.TYPE_TEXT_VARIATION_PASSWORD
             editText.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.baseline_visibility_off_24, 0);
         } else {
+            // NIK sekarang terlihat
             editText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
             editText.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.baseline_visibility_24, 0);
         }
 
+        // Memperbarui status visibilitas
         isNikVisible = !isNikVisible;
     }
 }

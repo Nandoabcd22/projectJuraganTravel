@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/background"
-    tools:context=".RegJamaahActivity">
+    tools:context=".RegAgenActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -24,7 +24,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Register Jamaah"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="100dp"
                 android:textSize="30dp"
                 android:layout_gravity="center"
                 android:textStyle="bold"
@@ -37,27 +37,11 @@
                 android:layout_gravity="center"
                 android:layout_width="380dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="30dp"
                 android:background="@drawable/border"
                 android:drawableLeft="@drawable/baseline_person_24"
                 android:drawablePadding="8dp"
                 android:hint="Nama Lengkap"
-                android:fontFamily="@font/poppins_medium"
-                android:padding="8dp" />
-
-
-            <EditText
-                android:id="@+id/nik"
-                android:layout_width="380dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/border"
-                android:drawableLeft="@drawable/baseline_password_24"
-                android:inputType="textPassword"
-                android:drawablePadding="8dp"
-                android:drawableRight="@drawable/baseline_visibility_off_24"
-                android:hint="Masukkan NIK anda"
                 android:fontFamily="@font/poppins_medium"
                 android:padding="8dp" />
 
@@ -70,7 +54,22 @@
                 android:background="@drawable/border"
                 android:drawableLeft="@drawable/baseline_email_24"
                 android:drawablePadding="8dp"
-                android:hint="Email"
+                android:hint="Email Aktif"
+                android:fontFamily="@font/poppins_medium"
+                android:padding="8dp" />
+
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="380dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/border"
+                android:drawableLeft="@drawable/baseline_password_24"
+                android:inputType="textPassword"
+                android:drawablePadding="8dp"
+                android:drawableRight="@drawable/baseline_visibility_off_24"
+                android:hint="Password anda"
                 android:fontFamily="@font/poppins_medium"
                 android:padding="8dp" />
 
@@ -87,30 +86,6 @@
                 android:drawablePadding="8dp"
                 android:hint="No. Handphone"
                 android:fontFamily="@font/poppins_medium"
-                android:padding="8dp" />
-
-            <Spinner
-                android:id="@+id/gender"
-                android:layout_width="380dp"
-                android:layout_height="50dp"
-                android:background="@drawable/border"
-                android:drawableLeft="@drawable/baseline_people_alt_24"
-                android:drawablePadding="8dp"
-                android:layout_marginTop="20dp"
-                android:layout_gravity="center">
-            </Spinner>
-
-            <EditText
-                android:id="@+id/alamat"
-                android:layout_width="380dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/border"
-                android:drawableLeft="@drawable/baseline_maps_home_work_24"
-                android:drawablePadding="8dp"
-                android:fontFamily="@font/poppins_medium"
-                android:hint="Alamat"
                 android:padding="8dp" />
 
             <Button
