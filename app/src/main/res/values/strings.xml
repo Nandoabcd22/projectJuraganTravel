@@ -4,28 +4,6 @@
         <item>Laki-Laki</item>
         <item>Perempuan</item>
     </string-array>
-    <string-array name="countries_arry">
-        <item>Indonesia</item>
-        <item>Brasil</item>
-        <item>Jepang</item>
-        <item>Perancis</item>
-        <item>Mesir</item>
-        <item>Kanada</item>
-        <item>Australia</item>
-        <item>Spanyol</item>
-        <item>Rusia</item>
-        <item>India</item>
-        <item>China</item>
-        <item>Amerika Serikat</item>
-        <item>Jerman</item>
-        <item>Italia</item>
-        <item>Argentina</item>
-        <item>Meksiko</item>
-        <item>Belanda</item>
-        <item>Swedia</item>
-        <item>Korea Selatan</item>
-        <item>Afrika Selatan</item>
-    </string-array>
     <string name="bot_nav">Navigation Drawer</string>
     <string name="open_nav">Open Navigation Drawer</string>
     <string name="close_nav">Close Navigation Drawer</string>

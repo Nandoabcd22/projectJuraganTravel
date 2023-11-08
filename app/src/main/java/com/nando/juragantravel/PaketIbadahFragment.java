@@ -7,14 +7,17 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 
-public class dashboardFragment extends Fragment {
-
-
+/**
+ * A simple {@link Fragment} subclass.
+ * Use the {@link PaketIbadahFragment#newInstance} factory method to
+ * create an instance of this fragment.
+ */
+public class PaketIbadahFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        return inflater.inflate(R.layout.fragment_paketibadah, container, false);
+//
     }
-
 }

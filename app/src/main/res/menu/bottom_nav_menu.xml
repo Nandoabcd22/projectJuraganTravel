@@ -1,26 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/home"
-        android:title="Home"
+        android:id="@+id/etBeranda"
+        android:title="Beranda"
         android:icon="@drawable/ic_home"
         />
 
     <item
-        android:id="@+id/cartId"
-        android:title="Cart"
+        android:id="@+id/etPaket"
+        android:title="Paket Ibadah"
+        android:icon="@drawable/baseline_view_list_24"
+        />
+
+    <item
+        android:id="@+id/etSholat"
+        android:title="Sholat"
+        android:icon="@drawable/baseline_mosque_24"
+        />
+
+    <item
+        android:id="@+id/etPemesanan"
+        android:title="Pemesanan"
         android:icon="@drawable/ic_shopping_cart"
         />
-
     <item
-        android:id="@+id/search"
-        android:title="Profile"
-        android:icon="@drawable/ic_search"
-        />
-
-    <item
-        android:id="@+id/profile"
-        android:title="profile"
+        android:id="@+id/etAkun"
+        android:title="Akun saya"
         android:icon="@drawable/ic_person"
         />
 </menu>

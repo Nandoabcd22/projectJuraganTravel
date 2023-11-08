@@ -64,7 +64,7 @@ public class LogAgenActivity extends AppCompatActivity {
 
                 if (databaseHelper.checkPassword(password)) {
                     // Jika NIK valid, lanjutkan ke activity_home_jamaah
-                    Intent intent = new Intent(LogAgenActivity.this, HomeJamaahActivity.class);
+                    Intent intent = new Intent(LogAgenActivity.this, MainActivity.class);
                     startActivity(intent);
                     Toast.makeText(LogAgenActivity.this, "Login Berhasil", Toast.LENGTH_SHORT).show();
                 } else {

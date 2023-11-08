@@ -65,7 +65,7 @@ public class LogJamaahActivity extends AppCompatActivity {
 
                 if (databaseHelper.checkNIK(providedNIK)) {
                     // Jika NIK valid, lanjutkan ke activity_home_jamaah
-                    Intent intent = new Intent(LogJamaahActivity.this, HomeJamaahActivity.class);
+                    Intent intent = new Intent(LogJamaahActivity.this, MainActivity.class);
                     startActivity(intent);
                     Toast.makeText(LogJamaahActivity.this, "Login Berhasil", Toast.LENGTH_SHORT).show();
                 } else {
